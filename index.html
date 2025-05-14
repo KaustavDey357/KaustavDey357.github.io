@@ -5,6 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kaustav Dey – DevOps + Cloud Specialist</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f8f8;
+      color: #222;
+    }
+    nav {
+      background: #111;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: red;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: red;
+    }
+    header {
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, #000, #222);
+      color: white;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: red;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .highlights {
+      padding: 2rem;
+      background: #fff;
+      text-align: center;
+    }
+    .highlights p {
+      font-size: 1.1rem;
+      margin: 1rem auto;
+      max-width: 600px;
+    }
+    .project-search {
+      margin: 2rem;
+      text-align: center;
+    }
+    .project-search input {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      width: 80%;
+      max-width: 400px;
+    }
+    .projects {
+      padding: 2rem;
+    }
+    .project {
+      background: white;
+      margin: 1rem 0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .project h3 {
+      margin-top: 0;
+      color: #cc0000;
+    }
+    footer {
+      background: #111;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    footer a {
+      color: red;
+      text-decoration: none;
+    }
+    footer .contact-icons {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -17,26 +123,64 @@
     </ul>
   </nav>
 
-  <header class="fade-in">
-    <h1>Kaustav Dey</h1>
-    <p>DevOps + Cloud Specialist | Terraform • AWS • Docker • CI/CD</p>
-    <input type="text" placeholder="Search..." class="search" />
+  <header>
+    <h1>Welcome to My DevOps World</h1>
+    <p>Hi! I'm Kaustav. I help startups and businesses launch and manage secure, scalable AWS infrastructure with modern DevOps practices.</p>
   </header>
 
-  <section class="fade-in">
-    <h2>What I Can Do for You</h2>
-    <ul class="promises">
-      <li>I’ll set up your AWS infra using best practices (secure, scalable)</li>
-      <li>I can help you deploy your app on AWS with CI/CD in a day</li>
-      <li>Let me Dockerize your app and deploy it to EC2</li>
-      <li>Free AWS cost audit — pay only if I save you money</li>
-    </ul>
+  <section class="highlights">
+    <p>I’ll set up your AWS infra using best practices (secure, scalable)</p>
+    <p>I can help you deploy your app on AWS with CI/CD in a day</p>
+    <p>Let me Dockerize your app and deploy it to EC2</p>
+    <p>Free AWS cost audit — pay only if I save you money</p>
+  </section>
+
+  <section class="project-search">
+    <input type="text" id="searchInput" placeholder="Search projects..." onkeyup="searchProjects()" />
+  </section>
+
+  <section class="projects" id="projectList">
+    <div class="project">
+      <h3>AWS Static Website Hosting</h3>
+      <p>Hosted a frontend app on S3 and delivered via CloudFront with HTTPS. Supports custom domains and cache control.</p>
+      <a href="https://github.com/kedrooo/aws-static-site-s3">GitHub Repo</a>
+    </div>
+    <div class="project">
+      <h3>Infrastructure as Code with Terraform</h3>
+      <p>Provisioned EC2, Security Groups, and Load Balancer using Terraform modules. Reusable and scalable design.</p>
+      <a href="https://github.com/kedrooo/terraform-ec2-lb">GitHub Repo</a>
+    </div>
+    <div class="project">
+      <h3>CI/CD to EC2 using GitHub Actions</h3>
+      <p>Built and deployed a Dockerized app with GitHub Actions pipeline to an EC2 instance. End-to-end DevOps demo.</p>
+      <a href="https://github.com/kedrooo/ci-cd-pipeline-aws">GitHub Repo</a>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Kaustav Dey</p>
+    <p>Email: <a href:"mailto:deykaustav357@gmail.com"></a></p>
+    <div class="contact-icons">
+      <a href="https://github.com/kedrooo" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/kaustav-dey" target="_blank">LinkedIn</a>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    function searchProjects() {
+      const input = document.getElementById("searchInput");
+      const filter = input.value.toLowerCase();
+      const projects = document.getElementById("projectList").children;
+
+      for (let i = 0; i < projects.length; i++) {
+        const project = projects[i];
+        const text = project.innerText.toLowerCase();
+        if (text.includes(filter)) {
+          project.style.display = "block";
+        } else {
+          project.style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
 </html>
