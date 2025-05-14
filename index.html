@@ -2,154 +2,105 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Kaustav Dey's Portfolio">
-  <title>Kaustav Dey | DevOps Engineer</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome for Icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaustav Dey – DevOps + Cloud Specialist</title>
   <style>
-    :root {
-      --bg: #1e1e2f;
-      --text: #f3f3f3;
-      --accent: #6c63ff;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Montserrat', sans-serif;
-      line-height: 1.6;
-      scroll-behavior: smooth;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #f4f6f8;
+      color: #333;
     }
 
-    header {
-      text-align: center;
-      padding: 3rem 1rem;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--accent);
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    section {
-      padding: 2rem 1rem;
-      max-width: 800px;
+    .container {
+      max-width: 900px;
       margin: auto;
     }
 
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
     h2 {
-      color: var(--accent);
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-top: 2rem;
+      color: #34495e;
     }
 
-    .service, .project {
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #141422;
-    }
-
-    footer a {
-      color: var(--text);
-      margin: 0 0.5rem;
+    .tagline {
       font-size: 1.2rem;
-      transition: color 0.3s;
+      color: #555;
+      margin-bottom: 2rem;
     }
 
-    footer a:hover {
-      color: var(--accent);
+    .project {
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
+    .project h3 {
+      margin: 0 0 0.5rem 0;
+      color: #1a237e;
+    }
+
+    .project p {
+      margin: 0.5rem 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact p {
+      margin: 0.5rem 0;
     }
   </style>
 </head>
-
 <body>
-  <header>
+  <div class="container">
     <h1>Kaustav Dey</h1>
-    <p>DevOps Engineer | Cloud Architect | Problem Solver</p>
-  </header>
+    <p class="tagline">DevOps + Cloud Specialist | Terraform • AWS • Docker • CI/CD</p>
 
-  <section id="services">
-    <h2>What I Offer</h2>
-    <div class="service reveal">
-      <p>I specialize in building highly secure, scalable, and cost-effective AWS infrastructure using services like EC2, S3, Lambda, CloudFront, and more.</p>
-    </div>
-    <div class="service reveal">
-      <p>I have a proven track record of implementing full CI/CD pipelines with GitHub Actions, reducing deployment times and increasing reliability.</p>
-    </div>
-    <div class="service reveal">
-      <p>I excel in containerization, helping clients Dockerize applications and orchestrate them with Kubernetes for maximum portability and efficiency.</p>
-    </div>
-    <div class="service reveal">
-      <p>I also provide detailed AWS cost audits and optimization strategies to help businesses minimize expenses while maintaining performance.</p>
-    </div>
-  </section>
-
-  <section id="projects">
     <h2>Projects</h2>
-    <div class="project reveal">
-      <p><strong>Cloud Migration:</strong> Led the migration of legacy systems to AWS, improving uptime and reducing costs by 30%.</p>
+
+    <div class="project">
+      <h3>AWS Static Website Hosting</h3>
+      <p>Hosted a frontend app on S3 and delivered via CloudFront with HTTPS. Supports custom domains and cache control.</p>
+      <a href="https://github.com/yourusername/aws-static-site-s3">GitHub Repo</a>
     </div>
-    <div class="project reveal">
-      <p><strong>CI/CD Pipeline Setup:</strong> Built an automated pipeline for a fintech startup, reducing deployment time from 1 hour to 5 minutes.</p>
+
+    <div class="project">
+      <h3>Infrastructure as Code with Terraform</h3>
+      <p>Provisioned EC2, Security Groups, and Load Balancer using Terraform modules. Reusable and scalable design.</p>
+      <a href="https://github.com/yourusername/terraform-ec2-lb">GitHub Repo</a>
     </div>
-  </section>
 
-  <footer>
-    <p>Connect with me:</p>
-    <a href="https://github.com/KaustavDey357" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-    <a href="https://linkedin.com/in/kaustavdey" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-    <p>&copy; <span id="year"></span> Kaustav Dey</p>
-  </footer>
+    <div class="project">
+      <h3>CI/CD to EC2 using GitHub Actions</h3>
+      <p>Built and deployed a Dockerized app with GitHub Actions pipeline to an EC2 instance. End-to-end DevOps demo.</p>
+      <a href="https://github.com/yourusername/ci-cd-pipeline-aws">GitHub Repo</a>
+    </div>
 
-  <script>
-    // Auto update year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    <h2>Blog</h2>
+    <p><a href="https://dev.to/yourusername/how-i-deployed-an-app-to-aws-with-ci-cd-terraform">How I Deployed an App to AWS with CI/CD + Terraform</a></p>
 
-    // Reveal animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>Email: yourname@example.com</p>
+      <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourname">linkedin.com/in/yourname</a></p>
+    </div>
+  </div>
 </body>
 </html>
