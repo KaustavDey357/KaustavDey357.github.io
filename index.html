@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaustav Dey – DevOps & Cloud Specialist</title>
-  <meta name="description" content="Professional DevOps Engineer | AWS, CI/CD, Docker, Terraform.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Kaustav Dey's Portfolio">
+  <title>Kaustav Dey | DevOps Engineer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
     :root {
-      --bg: #111;
-      --text: #f1f1f1;
-      --red: #e50914;
-      --light: #aaa;
-      --card-bg: #1b1b1b;
+      --bg: #1e1e2f;
+      --text: #f3f3f3;
+      --accent: #6c63ff;
     }
 
     * {
@@ -24,202 +26,121 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
       background-color: var(--bg);
       color: var(--text);
+      font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
       scroll-behavior: smooth;
     }
 
-    a {
-      color: var(--red);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     header {
-      padding: 5rem 2rem;
       text-align: center;
-      background: linear-gradient(to right, #000, #1a1a1a);
-      color: var(--text);
+      padding: 3rem 1rem;
     }
 
     header h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      color: var(--accent);
     }
 
     header p {
-      font-size: 1.4rem;
-      color: var(--light);
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
     }
 
     section {
-      max-width: 1000px;
-      margin: 5rem auto;
-      padding: 0 2rem;
+      padding: 2rem 1rem;
+      max-width: 800px;
+      margin: auto;
     }
 
     h2 {
-      color: var(--red);
-      font-size: 2.2rem;
-      margin-bottom: 1.5rem;
+      color: var(--accent);
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .service, .project {
-      background: var(--card-bg);
-      border-left: 5px solid var(--red);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 8px;
+      margin-bottom: 1.5rem;
       opacity: 0;
       transform: translateY(40px);
-      transition: all 0.6s ease;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    .reveal.active {
+    .active {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .service p {
-      color: var(--light);
-    }
-
-    .project h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
-
-    .project p {
-      margin-bottom: 1rem;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .tech-stack span {
-      background: #222;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      border: 1px solid var(--red);
-      color: var(--red);
-      font-weight: bold;
-    }
-
     footer {
       text-align: center;
-      padding: 2rem 1rem;
-      background: #000;
-      color: var(--light);
-      margin-top: 3rem;
+      padding: 1rem;
+      background: #141422;
     }
 
-    .icons a {
-      margin: 0 0.75rem;
-      font-size: 1.5rem;
-      color: var(--red);
-      transition: color 0.2s ease;
+    footer a {
+      color: var(--text);
+      margin: 0 0.5rem;
+      font-size: 1.2rem;
+      transition: color 0.3s;
     }
 
-    .icons a:hover {
-      color: #ff4444;
+    footer a:hover {
+      color: var(--accent);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       header h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
     }
   </style>
 </head>
 
 <body>
-
   <header>
     <h1>Kaustav Dey</h1>
-    <p>DevOps & Cloud Engineer | AWS · Docker · CI/CD · Terraform</p>
+    <p>DevOps Engineer | Cloud Architect | Problem Solver</p>
   </header>
 
-  <section id="intro" class="reveal">
+  <section id="services">
     <h2>What I Offer</h2>
-    <div class="service">
-      <p>I specializes in building highly secure, scalable, and cost-effective AWS infrastructure, tailored to meet the demands of modern applications.</p>
+    <div class="service reveal">
+      <p>I specialize in building highly secure, scalable, and cost-effective AWS infrastructure using services like EC2, S3, Lambda, CloudFront, and more.</p>
     </div>
-    <div class="service">
-      <p>I have a proven track record of implementing full CI/CD pipelines with GitHub Actions, allowing for seamless application deployment in any environment.</p>
+    <div class="service reveal">
+      <p>I have a proven track record of implementing full CI/CD pipelines with GitHub Actions, reducing deployment times and increasing reliability.</p>
     </div>
-    <div class="service">
-      <p>I excels in containerization, helping clients Dockerize applications and deploy them to Amazon EC2, ECS, or other cloud platforms.</p>
+    <div class="service reveal">
+      <p>I excel in containerization, helping clients Dockerize applications and orchestrate them with Kubernetes for maximum portability and efficiency.</p>
     </div>
-    <div class="service">
-      <p>I also provides detailed AWS cost audits, helping clients optimize their cloud infrastructure and save on unnecessary costs.</p>
-    </div>
-  </section>
-
-  <section id="stack" class="reveal">
-    <h2>Tools & Technologies</h2>
-    <div class="tech-stack">
-      <span>AWS</span>
-      <span>Docker</span>
-      <span>Terraform</span>
-      <span>GitHub Actions</span>
-      <span>EC2</span>
-      <span>CloudFront</span>
-      <span>S3</span>
-      <span>CI/CD</span>
-      <span>Nginx</span>
+    <div class="service reveal">
+      <p>I also provide detailed AWS cost audits and optimization strategies to help businesses minimize expenses while maintaining performance.</p>
     </div>
   </section>
 
-  <section id="projects" class="reveal">
-    <h2>Featured Projects</h2>
-
-    <div class="project">
-      <h3>AWS Static Website Hosting</h3>
-      <p>This project involved setting up a static website hosted on AWS S3, with CloudFront for global content delivery, HTTPS for secure access, and custom domain support.</p>
-      <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">View on GitHub</a>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project reveal">
+      <p><strong>Cloud Migration:</strong> Led the migration of legacy systems to AWS, improving uptime and reducing costs by 30%.</p>
     </div>
-
-    <div class="project">
-      <h3>Terraform EC2 & Load Balancer</h3>
-      <p>Provisioned a scalable infrastructure using Terraform, including EC2 instances, Load Balancers, and security configurations, to create a secure and reliable environment.</p>
-      <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project">
-      <h3>CI/CD Deployment to EC2</h3>
-      <p>Implemented a complete CI/CD pipeline for automated Docker container deployment to AWS EC2, utilizing GitHub Actions for continuous integration and delivery.</p>
-      <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">View on GitHub</a>
-    </div>
-  </section>
-
-  <section id="contact" class="reveal">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
-    <div class="icons">
-      <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
+    <div class="project reveal">
+      <p><strong>CI/CD Pipeline Setup:</strong> Built an automated pipeline for a fintech startup, reducing deployment time from 1 hour to 5 minutes.</p>
     </div>
   </section>
 
   <footer>
-    &copy; <span id="year"></span> Kaustav Dey. All rights reserved.
+    <p>Connect with me:</p>
+    <a href="https://github.com/KaustavDey357" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/kaustavdey" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+    <p>&copy; <span id="year"></span> Kaustav Dey</p>
   </footer>
 
   <script>
-    // Auto year
+    // Auto update year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Scroll animation with IntersectionObserver
+    // Reveal animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -228,7 +149,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
