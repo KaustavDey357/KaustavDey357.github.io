@@ -4,47 +4,135 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kaustav Dey – DevOps + Cloud Specialist</title>
+  <meta name="description" content="Kaustav Dey's portfolio – DevOps and Cloud Engineer specializing in AWS, CI/CD, Docker, and Terraform." />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 2rem; background: #f9f9f9; }
-    .container { max-width: 800px; margin: auto; }
-    h1 { font-size: 2.5rem; }
-    .project { margin: 2rem 0; padding: 1rem; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #ccc; }
-    a { color: #007bff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .project, .contact-info {
+      background: #fff;
+      margin: 1.5rem 0;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+    }
+    a {
+      color: #0077cc;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .icons a {
+      margin: 0 10px;
+      color: #333;
+      font-size: 1.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>Kaustav Dey</h1>
-    <p>DevOps + Cloud Specialist | Terraform • AWS • Docker • CI/CD</p>
+    <p class="tagline">DevOps + Cloud Specialist | Terraform • AWS • Docker • CI/CD</p>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <h2>Projects</h2>
+  <div class="container">
+    <section id="projects">
+      <h2>Projects</h2>
 
-    <div class="project">
-      <h3>AWS Static Website Hosting</h3>
-      <p>Hosted a frontend app on S3 and delivered via CloudFront with HTTPS. Supports custom domains and cache control.</p>
-      <a href="https://github.com/KaustavDey357/aws-static-hosting">GitHub Repo</a>
-    </div>
+      <div class="project">
+        <h3>AWS Static Website Hosting</h3>
+        <p>Hosted a frontend app on S3 and delivered via CloudFront with HTTPS. Supports custom domains and cache control.</p>
+        <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">View GitHub Repo</a>
+      </div>
 
-    <div class="project">
-      <h3>Infrastructure as Code with Terraform</h3>
-      <p>Provisioned EC2, Security Groups, and Load Balancer using Terraform modules. Reusable and scalable design.</p>
-      <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/">GitHub Repo</a>
-    </div>
+      <div class="project">
+        <h3>Infrastructure as Code with Terraform</h3>
+        <p>Provisioned EC2, Security Groups, and Load Balancer using Terraform modules. Reusable and scalable design.</p>
+        <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">View GitHub Repo</a>
+      </div>
 
-    <div class="project">
-      <h3>CI/CD to EC2 using GitHub Actions</h3>
-      <p>Built and deployed a Dockerized app with GitHub Actions pipeline to an EC2 instance. End-to-end DevOps demo.</p>
-      <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/">GitHub Repo</a>
-    </div>
+      <div class="project">
+        <h3>CI/CD to EC2 using GitHub Actions</h3>
+        <p>Built and deployed a Dockerized app with GitHub Actions pipeline to an EC2 instance. End-to-end DevOps demo.</p>
+        <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">View GitHub Repo</a>
+      </div>
+    </section>
 
-    <h2>Blog</h2>
-    <p><a href="https://dev.to/yourusername/how-i-deployed-an-app-to-aws-with-ci-cd-terraform">How I Deployed an App to AWS with CI/CD + Terraform</a></p>
+    <section id="blog">
+      <h2>Blog</h2>
+      <p>
+        <a href="https://dev.to/yourusername/how-i-deployed-an-app-to-aws-with-ci-cd-terraform" target="_blank">
+          How I Deployed an App to AWS with CI/CD + Terraform
+        </a>
+      </p>
+    </section>
 
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:deykaustav357@gmail.com" >deykaustav357@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/KaustavDey357">github.com/KaustavDey357</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/kaustav-dey-107593244/">linkedin.com/in/KaustavDey357</a></p>
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
+        <p>GitHub: <a href="https://github.com/KaustavDey357" target="_blank">github.com/KaustavDey357</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank">linkedin.com/in/KaustavDey357</a></p>
+        <div class="icons">
+          <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </section>
   </div>
+
+  <footer>
+    © 2025 Kaustav Dey. All rights reserved.
+  </footer>
 </body>
 </html>
