@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaustav Dey – DevOps + Cloud Specialist</title>
-  <meta name="description" content="Portfolio of Kaustav Dey – DevOps and Cloud Engineer specializing in AWS, CI/CD, Docker, and Terraform.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kaustav Dey – DevOps & Cloud Specialist</title>
+  <meta name="description" content="Kaustav Dey - AWS, CI/CD, Docker, Terraform expert. Let me help you build fast, secure cloud infrastructure.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --primary: #0d6efd;
-      --bg: #f0f2f5;
+      --bg: #f4f6f8;
       --white: #ffffff;
-      --text-dark: #222;
-      --text-muted: #555;
+      --dark: #222;
+      --muted: #666;
+      --accent: #e9ecef;
     }
 
     * {
@@ -24,9 +25,8 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
-      color: var(--text-dark);
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--dark);
     }
 
     header {
@@ -38,26 +38,12 @@
 
     header h1 {
       font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
     header p {
       font-size: 1.2rem;
-      color: #cce5ff;
-    }
-
-    nav {
-      margin-top: 1rem;
-    }
-
-    nav a {
-      color: var(--white);
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
+      color: #d0e7ff;
     }
 
     .container {
@@ -66,37 +52,72 @@
       padding: 0 1rem;
     }
 
+    section {
+      margin-bottom: 2.5rem;
+    }
+
     h2 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
       font-size: 1.8rem;
       color: var(--primary);
+      margin-bottom: 1rem;
     }
 
-    .project, .contact-info {
+    .services ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .services li {
+      margin-bottom: 1rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .services li::before {
+      content: '✔️';
+      position: absolute;
+      left: 0;
+    }
+
+    .project-buttons button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.25rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .project-buttons button:hover {
+      background: #0b5ed7;
+    }
+
+    .project-detail {
       background: var(--white);
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s ease;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: none;
+      margin-top: 1rem;
     }
 
-    .project:hover {
-      transform: translateY(-5px);
+    .project-detail.active {
+      display: block;
     }
 
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--accent);
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
     .icons a {
-      margin-right: 15px;
+      margin: 0 10px;
       font-size: 1.5rem;
       color: var(--primary);
       transition: color 0.2s ease;
@@ -105,79 +126,61 @@
     .icons a:hover {
       color: #0a58ca;
     }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #e9ecef;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    @media (max-width: 600px) {
-      nav a {
-        display: block;
-        margin: 0.5rem 0;
-      }
-
-      .icons a {
-        font-size: 1.2rem;
-      }
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>Kaustav Dey</h1>
-    <p>DevOps + Cloud Specialist | Terraform • AWS • Docker • CI/CD</p>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#blog">Blog</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <p>DevOps & Cloud Specialist | AWS · CI/CD · Docker · Terraform</p>
   </header>
 
   <div class="container">
-    <section id="projects">
-      <h2>Projects</h2>
+    <section class="services">
+      <h2>What I Can Do for You</h2>
+      <ul>
+        <li>I’ll set up your AWS infra using best practices (secure, scalable)</li>
+        <li>I can help you deploy your app on AWS with CI/CD in a day</li>
+        <li>Let me Dockerize your app and deploy it to EC2</li>
+        <li>Free AWS cost audit — pay only if I save you money</li>
+      </ul>
+    </section>
 
-      <div class="project">
+    <section class="projects">
+      <h2>Explore My Projects</h2>
+      <div class="project-buttons">
+        <button onclick="showProject('project1')">Static Website on AWS</button>
+        <button onclick="showProject('project2')">Terraform Infra</button>
+        <button onclick="showProject('project3')">CI/CD to EC2</button>
+      </div>
+
+      <div id="project1" class="project-detail">
         <h3>AWS Static Website Hosting</h3>
-        <p>Hosted a frontend app on S3 and delivered via CloudFront with HTTPS. Supports custom domains and cache control.</p>
-        <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">GitHub Repo</a>
+        <p>Hosted a frontend app on S3, delivered via CloudFront with HTTPS and custom domain support.</p>
+        <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">View GitHub Repo</a>
       </div>
 
-      <div class="project">
+      <div id="project2" class="project-detail">
         <h3>Infrastructure as Code with Terraform</h3>
-        <p>Provisioned EC2, Security Groups, and Load Balancer using Terraform modules. Reusable and scalable design.</p>
-        <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">GitHub Repo</a>
+        <p>Used Terraform modules to provision EC2, security groups, and load balancers. Reusable and scalable architecture.</p>
+        <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">View GitHub Repo</a>
       </div>
 
-      <div class="project">
-        <h3>CI/CD to EC2 using GitHub Actions</h3>
-        <p>Built and deployed a Dockerized app with GitHub Actions pipeline to an EC2 instance. End-to-end DevOps demo.</p>
-        <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">GitHub Repo</a>
+      <div id="project3" class="project-detail">
+        <h3>CI/CD Pipeline to EC2</h3>
+        <p>Built and deployed a Dockerized app using GitHub Actions to AWS EC2 — a full CI/CD setup in action.</p>
+        <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">View GitHub Repo</a>
       </div>
     </section>
 
-    <section id="blog">
-      <h2>Blog</h2>
-      <p><a href="https://dev.to/yourusername/how-i-deployed-an-app-to-aws-with-ci-cd-terraform" target="_blank">
-        How I Deployed an App to AWS with CI/CD + Terraform
-      </a></p>
-    </section>
-
-    <section id="contact">
+    <section class="contact">
       <h2>Contact</h2>
-      <div class="contact-info">
-        <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
-        <p>GitHub: <a href="https://github.com/KaustavDey357" target="_blank">github.com/KaustavDey357</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank">linkedin.com/in/KaustavDey357</a></p>
-        <div class="icons">
-          <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
+      <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
+      <p>GitHub: <a href="https://github.com/KaustavDey357" target="_blank">github.com/KaustavDey357</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank">linkedin.com/in/KaustavDey357</a></p>
+      <div class="icons">
+        <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
       </div>
     </section>
   </div>
@@ -187,8 +190,15 @@
   </footer>
 
   <script>
-    // Set current year in footer
+    // Dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Tab logic
+    function showProject(id) {
+      const allProjects = document.querySelectorAll('.project-detail');
+      allProjects.forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
   </script>
 </body>
 </html>
