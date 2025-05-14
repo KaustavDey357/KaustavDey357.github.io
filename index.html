@@ -4,201 +4,221 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kaustav Dey – DevOps & Cloud Specialist</title>
-  <meta name="description" content="Kaustav Dey - AWS, CI/CD, Docker, Terraform expert. Let me help you build fast, secure cloud infrastructure.">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <meta name="description" content="Professional DevOps Engineer | AWS, CI/CD, Docker, Terraform.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --primary: #0d6efd;
-      --bg: #f4f6f8;
-      --white: #ffffff;
-      --dark: #222;
-      --muted: #666;
-      --accent: #e9ecef;
+      --bg: #111;
+      --text: #f1f1f1;
+      --red: #e50914;
+      --light: #aaa;
+      --card-bg: #1b1b1b;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--dark);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: var(--red);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     header {
-      background: var(--primary);
-      color: var(--white);
-      padding: 2rem 1rem;
+      padding: 4rem 2rem;
       text-align: center;
+      background: linear-gradient(to right, #000, #1a1a1a);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
 
     header p {
       font-size: 1.2rem;
-      color: #d0e7ff;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+      color: var(--light);
     }
 
     section {
-      margin-bottom: 2.5rem;
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
     }
 
     h2 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
+      color: var(--red);
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
 
-    .services ul {
-      list-style: none;
-      padding-left: 1rem;
-    }
-
-    .services li {
-      margin-bottom: 1rem;
-      position: relative;
-      padding-left: 1.5rem;
-    }
-
-    .services li::before {
-      content: '✔️';
-      position: absolute;
-      left: 0;
-    }
-
-    .project-buttons button {
-      background: var(--primary);
-      border: none;
-      color: white;
-      padding: 0.75rem 1.25rem;
-      margin: 0.5rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-
-    .project-buttons button:hover {
-      background: #0b5ed7;
-    }
-
-    .project-detail {
-      background: var(--white);
+    .service, .project {
+      background: var(--card-bg);
+      border-left: 5px solid var(--red);
       padding: 1.5rem;
+      margin-bottom: 2rem;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      display: none;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .service p {
+      color: var(--light);
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
       margin-top: 1rem;
     }
 
-    .project-detail.active {
-      display: block;
+    .tech-stack span {
+      background: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-weight: bold;
     }
 
     footer {
       text-align: center;
-      padding: 1rem;
-      background: var(--accent);
-      font-size: 0.9rem;
-      color: var(--muted);
+      padding: 2rem 1rem;
+      background: #000;
+      color: var(--light);
+      margin-top: 3rem;
     }
 
     .icons a {
-      margin: 0 10px;
+      margin: 0 0.75rem;
       font-size: 1.5rem;
-      color: var(--primary);
+      color: var(--red);
       transition: color 0.2s ease;
     }
 
     .icons a:hover {
-      color: #0a58ca;
+      color: #ff4444;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1>Kaustav Dey</h1>
-    <p>DevOps & Cloud Specialist | AWS · CI/CD · Docker · Terraform</p>
+    <p>DevOps & Cloud Engineer | AWS · Docker · CI/CD · Terraform</p>
   </header>
 
-  <div class="container">
-    <section class="services">
-      <h2>What I Can Do for You</h2>
-      <ul>
-        <li>I’ll set up your AWS infra using best practices (secure, scalable)</li>
-        <li>I can help you deploy your app on AWS with CI/CD in a day</li>
-        <li>Let me Dockerize your app and deploy it to EC2</li>
-        <li>Free AWS cost audit — pay only if I save you money</li>
-      </ul>
-    </section>
+  <section id="intro" class="reveal">
+    <h2>What I Offer</h2>
+    <div class="service">
+      <p>I can helps your startup or enterprise to build secure, scalable AWS infrastructure using modern best practices.</p>
+    </div>
+    <div class="service">
+      <p>I can set up a full CI/CD pipeline in a day, enabling teams to deploy reliably with zero downtime.</p>
+    </div>
+    <div class="service">
+      <p>Need containerization? I can Dockerizes complex applications and deploys them seamlessly to EC2 or ECS.</p>
+    </div>
+    <div class="service">
+      <p>Concerned about cloud costs? I also offers AWS cost audits — clients only pay if he saves them money.</p>
+    </div>
+  </section>
 
-    <section class="projects">
-      <h2>Explore My Projects</h2>
-      <div class="project-buttons">
-        <button onclick="showProject('project1')">Static Website on AWS</button>
-        <button onclick="showProject('project2')">Terraform Infra</button>
-        <button onclick="showProject('project3')">CI/CD to EC2</button>
-      </div>
+  <section id="stack" class="reveal">
+    <h2>Tools & Tech</h2>
+    <div class="tech-stack">
+      <span>AWS</span>
+      <span>Docker</span>
+      <span>Terraform</span>
+      <span>GitHub Actions</span>
+      <span>EC2</span>
+      <span>CloudFront</span>
+      <span>S3</span>
+      <span>CI/CD</span>
+      <span>Nginx</span>
+    </div>
+  </section>
 
-      <div id="project1" class="project-detail">
-        <h3>AWS Static Website Hosting</h3>
-        <p>Hosted a frontend app on S3, delivered via CloudFront with HTTPS and custom domain support.</p>
-        <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">View GitHub Repo</a>
-      </div>
+  <section id="projects" class="reveal">
+    <h2>Featured Projects</h2>
 
-      <div id="project2" class="project-detail">
-        <h3>Infrastructure as Code with Terraform</h3>
-        <p>Used Terraform modules to provision EC2, security groups, and load balancers. Reusable and scalable architecture.</p>
-        <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">View GitHub Repo</a>
-      </div>
+    <div class="project">
+      <h3>AWS Static Website Hosting</h3>
+      <p>Deployed a fast, secure static site using S3 + CloudFront with HTTPS, custom domain, and fine-tuned caching.</p>
+      <a href="https://github.com/KaustavDey357/aws-static-hosting" target="_blank">View on GitHub</a>
+    </div>
 
-      <div id="project3" class="project-detail">
-        <h3>CI/CD Pipeline to EC2</h3>
-        <p>Built and deployed a Dockerized app using GitHub Actions to AWS EC2 — a full CI/CD setup in action.</p>
-        <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">View GitHub Repo</a>
-      </div>
-    </section>
+    <div class="project">
+      <h3>Terraform EC2 & Load Balancer</h3>
+      <p>Used Terraform modules to provision scalable infrastructure with EC2, Load Balancer, and secure networking.</p>
+      <a href="https://github.com/KaustavDey357/Ec2-Load-Balancer-Terraform/" target="_blank">View on GitHub</a>
+    </div>
 
-    <section class="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/KaustavDey357" target="_blank">github.com/KaustavDey357</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank">linkedin.com/in/KaustavDey357</a></p>
-      <div class="icons">
-        <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
-      </div>
-    </section>
-  </div>
+    <div class="project">
+      <h3>CI/CD Deployment to EC2</h3>
+      <p>Built a full CI/CD pipeline using GitHub Actions, Dockerized the app, and deployed it to an EC2 instance.</p>
+      <a href="https://github.com/KaustavDey357/ci-cd-aws-docker/" target="_blank">View on GitHub</a>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a></p>
+    <div class="icons">
+      <a href="https://github.com/KaustavDey357" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/kaustav-dey-107593244/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:deykaustav357@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  </section>
 
   <footer>
     &copy; <span id="year"></span> Kaustav Dey. All rights reserved.
   </footer>
 
   <script>
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Auto year
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Tab logic
-    function showProject(id) {
-      const allProjects = document.querySelectorAll('.project-detail');
-      allProjects.forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+    // Scroll animation with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
   </script>
 </body>
 </html>
