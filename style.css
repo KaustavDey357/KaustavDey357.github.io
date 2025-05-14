@@ -1,0 +1,85 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0e0e0e;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: #1c1c1c;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+nav .logo {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: red;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+header, main, section {
+  padding: 2rem;
+}
+
+.search {
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 1rem;
+}
+
+.project {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-left: 4px solid red;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.project a {
+  color: red;
+}
+
+.promises {
+  list-style: square;
+  color: #ff4b4b;
+  margin-left: 1rem;
+  line-height: 1.6;
+}
+
+footer {
+  background: #111;
+  color: #999;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
