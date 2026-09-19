@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Kaustav Dey – DevOps &amp; Cloud Specialist</title>
+<meta name="description" content="Kaustav Dey is the solo founder of LeadsExpo and helps solo developers and early-stage startups deploy apps to AWS with Terraform, Docker and CI/CD." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    color-scheme: light;
+    --bg: #eef7f1;
+    --surface: #ffffff;
+    --surface-2: #e2f1e8;
+    --text: #0d2a20;
+    --muted: #4b6b5d;
+    --line: #c5dfd0;
+    --accent: #15803d;
+    --accent-2: #0e7490;
+    --on-accent: #ffffff;
+    --spot: rgba(21, 128, 61, 0.16);
+    --dot: #bcd9c6;
+    --dot-hot: #15803d;
+    --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+    --body: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #08231c;
+      --surface: #0d3026;
+      --surface-2: #12402f;
+      --text: #e8f6ee;
+      --muted: #93b8a7;
+      --line: #1d4b3c;
+      --accent: #6ee7a8;
+      --accent-2: #67e8f9;
+      --on-accent: #06231a;
+      --spot: rgba(110, 231, 168, 0.15);
+      --dot: #14493b;
+      --dot-hot: #6ee7a8;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #08231c;
+    --surface: #0d3026;
+    --surface-2: #12402f;
+    --text: #e8f6ee;
+    --muted: #93b8a7;
+    --line: #1d4b3c;
+    --accent: #6ee7a8;
+    --accent-2: #67e8f9;
+    --on-accent: #06231a;
+    --spot: rgba(110, 231, 168, 0.15);
+    --dot: #14493b;
+    --dot-hot: #6ee7a8;
+  }
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  img, svg { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+  h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -0.025em; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; min-height: min(100svh, 900px); display: flex; }
+  .dotgrid {
+    position: absolute; inset: 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+  .dotgrid canvas { display: block; width: 100%; height: 100%; }
+  .hero-inner { position: relative; z-index: 1; width: 100%; display: flex; flex-direction: column; padding-top: 1.5rem; padding-bottom: 6rem; }
+  .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .25rem 1.5rem; }
+  .brand { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: -0.01em; }
+  .role { color: var(--muted); font-weight: 500; }
+  .hero-main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding-top: 3rem; }
+  .hero-title {
+    font-size: clamp(2.4rem, 5.8vw, 5rem);
+    line-height: 1.02;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    max-width: 12em;
+  }
+  .lead { max-width: 34rem; margin: 1.75rem 0 0; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--muted); }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem 1rem; margin-top: 2.25rem; }
+  .rise { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: .95s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .85rem 1.5rem; border-radius: 999px;
+    font-weight: 600; font-size: 1rem; text-decoration: none;
+    border: 1px solid var(--line);
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .btn svg { width: 1.1em; height: 1.1em; }
+  .btn-primary { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+  .btn-primary:hover { filter: brightness(1.08); }
+  .btn-ghost { background: transparent; color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-lg { font-family: var(--display); font-size: clamp(1.05rem, 3.4vw, 1.5rem); padding: 1rem 1.9rem; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+
+  /* ---------- React Bits-style text effects ---------- */
+  .bt-seg { display: inline-block; opacity: 0; filter: blur(12px); transform: translateY(-.35em);
+    transition: opacity .8s ease, filter .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+  .bt-seg.in { opacity: 1; filter: blur(0); transform: none; }
+
+  .shiny {
+    color: transparent;
+    background: linear-gradient(110deg, var(--text) 42%, var(--accent) 50%, var(--text) 58%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    animation: shine 3.6s linear infinite;
+  }
+  @keyframes shine { from { background-position: 150% 0; } to { background-position: -50% 0; } }
+
+  .gradient {
+    color: transparent;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+    background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    animation: drift 7s linear infinite;
+  }
+  @keyframes drift { to { background-position: -200% 0; } }
+
+  .decrypt { position: relative; display: inline-block; }
+  .decrypt-sizer { visibility: hidden; }
+  .decrypt-live { position: absolute; left: 0; top: 0; white-space: nowrap; }
+
+  /* ---------- Marquee (ScrollVelocity) ---------- */
+  .marquee { overflow: hidden; border-block: 1px solid var(--line); padding: 1.15rem 0; white-space: nowrap; }
+  .track { display: inline-flex; will-change: transform; }
+  .mq-group { display: inline-flex; }
+  .mq-item {
+    display: inline-flex; align-items: center; gap: 2.4rem; padding-right: 2.4rem;
+    font-family: var(--display); font-weight: 600; letter-spacing: -0.02em;
+    font-size: clamp(1.4rem, 3vw, 2.1rem); color: var(--muted);
+  }
+  .mq-item::after { content: ''; width: .5rem; height: .5rem; background: var(--accent); transform: rotate(45deg); flex: none; }
+  .marquee.static { white-space: normal; }
+  .marquee.static .track { flex-wrap: wrap; }
+  .marquee.static .mq-group { flex-wrap: wrap; }
+
+  /* ---------- Sections ---------- */
+  .block { padding-top: clamp(4rem, 9vw, 7rem); }
+  .block h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 700; margin-bottom: 2rem; }
+
+  /* ---------- Spotlight / tilt cards ---------- */
+  .spot {
+    position: relative; isolation: isolate; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 20px; padding: 1.6rem;
+    text-decoration: none; color: inherit; display: block;
+  }
+  .spot::before {
+    content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--spot), transparent 60%);
+    opacity: 0; transition: opacity .3s;
+  }
+  .spot:hover::before { opacity: 1; }
+  .spot.tilt { transition: transform .2s ease-out, border-color .2s; will-change: transform; }
+  .spot.tilt:hover { border-color: var(--accent); }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.25rem; }
+  .service h3 { font-size: 1.4rem; font-weight: 650; margin-bottom: .6rem; }
+  .service p { margin: 0; color: var(--muted); }
+  .service .ico { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border-radius: 12px; background: var(--surface-2); color: var(--accent); margin-bottom: 1.1rem; }
+  .service .ico svg { width: 55%; height: 55%; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 1.25rem; }
+  .project { display: flex; flex-direction: column; gap: .75rem; }
+  .project h3 { font-size: 1.45rem; font-weight: 650; }
+  .project p { margin: 0; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .5rem; }
+  .tag { font-size: .82rem; padding: .15rem .7rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--bg); }
+  .repo { display: inline-flex; align-items: center; gap: .4rem; font-weight: 600; color: var(--accent); }
+  .repo svg { width: 1em; height: 1em; }
+
+  /* ---------- Featured: LeadsExpo ---------- */
+  .block.lead-block { padding-top: clamp(2.5rem, 6vw, 4.5rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+  .feature {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 2rem clamp(2rem, 5vw, 4rem);
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    border-color: var(--accent); border-radius: 26px;
+  }
+  .feature-main { display: flex; flex-direction: column; align-items: flex-start; }
+  .badge { display: inline-block; padding: .15rem .75rem; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-size: .8rem; font-weight: 600; margin-bottom: 1rem; }
+  .block .feature-title { font-size: clamp(2.6rem, 7vw, 4.6rem); line-height: 1; letter-spacing: -0.035em; margin-bottom: 1.1rem; }
+  .feature-tagline { font-size: clamp(1.1rem, 2.2vw, 1.4rem); margin: 0 0 1rem; max-width: 30rem; }
+  .feature-note { margin: 0 0 1.25rem; color: var(--muted); max-width: 30rem; }
+  .feature .tags { margin-top: 0; padding-top: 0; margin-bottom: 1.75rem; }
+  .feature-points { display: flex; flex-direction: column; gap: 1.5rem; justify-content: center; }
+  .point { border-left: 2px solid var(--accent); padding-left: 1.1rem; }
+  .point h3 { font-size: 1.25rem; font-weight: 650; margin-bottom: .25rem; }
+  .point p { margin: 0; color: var(--muted); }
+  @media (max-width: 820px) { .feature { grid-template-columns: 1fr; } }
+
+  /* ---------- Blog ---------- */
+  .posts { border-top: 1px solid var(--line); }
+  .post {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem 2rem;
+    padding: 1.4rem 0; border-bottom: 1px solid var(--line); text-decoration: none;
+  }
+  .post-title { font-family: var(--display); font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; max-width: 40rem; transition: color .2s; }
+  .post-src { display: inline-flex; align-items: center; gap: .35rem; color: var(--muted); font-size: .95rem; transition: color .2s; }
+  .post-src svg { width: 1em; height: 1em; }
+  .post:hover .post-title, .post:hover .post-src { color: var(--accent); }
+
+  /* ---------- Contact ---------- */
+  .contact h2 { font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; max-width: 12em; margin-bottom: 2.25rem; }
+  .links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 2rem; }
+  .links a { color: var(--muted); font-weight: 500; text-underline-offset: 4px; }
+  .links a:hover { color: var(--accent); }
+
+  footer { padding: 5rem 0 7.5rem; color: var(--muted); font-size: .95rem; }
+  .divider { border-top: 1px solid var(--line); padding-top: 1.5rem; }
+
+  /* ---------- Dock ---------- */
+  .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; justify-content: center; pointer-events: none; padding: 0 0 calc(env(safe-area-inset-bottom, 0px) + 12px); }
+  .dock-panel {
+    pointer-events: auto; display: flex; align-items: flex-end; gap: 10px;
+    height: 60px; padding: 8px; border-radius: 20px;
+    background: var(--surface);
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .16);
+  }
+  .dock-item {
+    position: relative; flex: none; display: grid; place-items: center;
+    width: 44px; height: 44px; border-radius: 14px;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
+    text-decoration: none; transition: width .12s ease-out, height .12s ease-out, color .2s;
+  }
+  button.dock-item { padding: 0; font: inherit; cursor: pointer; }
+  .dock-item:hover { color: var(--accent); }
+  .dock-item svg { width: 46%; height: 46%; }
+  .dock-label {
+    position: absolute; bottom: calc(100% + 10px); left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    opacity: 0; pointer-events: none; white-space: nowrap;
+    background: var(--surface); color: var(--text); border: 1px solid var(--line);
+    padding: .2rem .6rem; border-radius: 8px; font-size: .8rem;
+    transition: opacity .15s, transform .15s;
+  }
+  .dock-item:hover .dock-label, .dock-item:focus-visible .dock-label { opacity: 1; transform: translateX(-50%); }
+
+  /* ---------- Fallback ---------- */
+  .fallback { padding: 2rem; max-width: 40rem; margin: 0 auto; }
+
+  /* ---------- Motion preferences ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise, .shiny, .gradient { animation: none; }
+    .bt-seg { transition: none; }
+    .spot.tilt, .dock-item { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<noscript>
+  <div style="padding:2rem;max-width:40rem;margin:0 auto">
+    <h1>Kaustav Dey – DevOps &amp; Cloud Specialist</h1>
+    <p>This page needs JavaScript. Contact: <a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a> · <a href="https://github.com/KaustavDey357">GitHub</a></p>
+  </div>
+</noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+(function () {
+  var FALLBACK_HTML =
+    '<div class="fallback"><h1>Kaustav Dey – DevOps &amp; Cloud Specialist</h1>' +
+    '<p>Something went wrong loading this page. Contact: ' +
+    '<a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a> · ' +
+    '<a href="https://github.com/KaustavDey357">GitHub</a></p></div>';
+  var rootEl = document.getElementById('root');
+
+  if (!window.React || !window.ReactDOM) { rootEl.innerHTML = FALLBACK_HTML; return; }
+
+  var h = React.createElement;
+  var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- Helpers ---------- */
+  function useInView(ref, threshold) {
+    var s = useState(false), seen = s[0], setSeen = s[1];
+    useEffect(function () {
+      var el = ref.current;
+      if (!el) return;
+      if (!('IntersectionObserver' in window)) { setSeen(true); return; }
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { setSeen(true); io.disconnect(); }
+      }, { threshold: threshold || 0.2 });
+      io.observe(el);
+      return function () { io.disconnect(); };
+    }, []);
+    return seen;
+  }
+
+  function Icon(props) {
+    return h('svg', {
+      viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.8,
+      strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': true
+    }, [].concat(props.d).map(function (p, i) { return h('path', { key: i, d: p }); }));
+  }
+  var ICONS = {
+    home: ['M3 11l9-8 9 8', 'M5 10v10h14V10', 'M10 20v-6h4v6'],
+    layers: ['M12 3l9 5-9 5-9-5 9-5z', 'M3 13l9 5 9-5'],
+    code: ['M8 8l-5 4 5 4', 'M16 8l5 4-5 4', 'M14 5l-4 14'],
+    doc: ['M6 3h9l4 4v14H6z', 'M14 3v5h5', 'M9 13h7', 'M9 17h7'],
+    mail: ['M3 6h18v12H3z', 'M3 7l9 7 9-7'],
+    ext: ['M7 17L17 7', 'M8 7h9v9'],
+    git: ['M6 3v12', 'M18 9a3 3 0 100-6 3 3 0 000 6z', 'M6 21a3 3 0 100-6 3 3 0 000 6z', 'M18 9a9 9 0 01-9 9'],
+    cloud: ['M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18H7z'],
+    bolt: ['M13 2L4 14h7l-1 8 9-12h-7l1-8z'],
+    moon: ['M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z']
+  };
+
+  /* ---------- DotGrid ---------- */
+  function hexRgb(hex, fallback) {
+    hex = String(hex || '').replace('#', '').trim();
+    if (!hex) return fallback;
+    if (hex.length === 3) hex = hex.split('').map(function (c) { return c + c; }).join('');
+    var n = parseInt(hex, 16);
+    if (isNaN(n)) return fallback;
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+
+  function DotGrid(props) {
+    var dotSize = props.dotSize || 3, gap = props.gap || 30, proximity = props.proximity || 150;
+    var wrap = useRef(null), cv = useRef(null);
+    useEffect(function () {
+      var canvas = cv.current, ctx = canvas.getContext('2d'), root = document.documentElement;
+      var W = 0, H = 0, dots = [], raf = 0, visible = true, lastAct = 0, colorAt = -1e9;
+      var base = [188, 217, 198], hot = [21, 128, 61], baseStr = 'rgb(188,217,198)';
+      var mouse = { x: -1e4, y: -1e4 }, waves = [];
+
+      function readColors() {
+        var cs = getComputedStyle(root);
+        base = hexRgb(cs.getPropertyValue('--dot'), base);
+        hot = hexRgb(cs.getPropertyValue('--dot-hot'), hot);
+        baseStr = 'rgb(' + base[0] + ',' + base[1] + ',' + base[2] + ')';
+      }
+
+      function draw(now) {
+        if (now - colorAt > 500) { readColors(); colorAt = now; }
+        ctx.clearRect(0, 0, W, H);
+        waves = waves.filter(function (w) { return now - w.t < 900; });
+        for (var i = 0; i < dots.length; i++) {
+          var d = dots[i], tx = 0, ty = 0, t = 0;
+          var mx = d.x - mouse.x, my = d.y - mouse.y, md = Math.sqrt(mx * mx + my * my);
+          if (md < proximity) {
+            t = 1 - md / proximity; t = t * t * (3 - 2 * t);
+            var k = (t * 10) / (md || 1); tx += mx * k; ty += my * k;
+          }
+          for (var j = 0; j < waves.length; j++) {
+            var w = waves[j], age = now - w.t, r = age * 0.7;
+            var wx = d.x - w.x, wy = d.y - w.y, wd = Math.sqrt(wx * wx + wy * wy), off = Math.abs(wd - r);
+            if (off < 50) {
+              var s0 = (1 - off / 50) * (1 - age / 900), f = (s0 * 18) / (wd || 1);
+              tx += wx * f; ty += wy * f; if (s0 > t) t = s0;
+            }
+          }
+          d.dx += (tx - d.dx) * 0.12; d.dy += (ty - d.dy) * 0.12;
+          if (t < 0.01) {
+            ctx.fillStyle = baseStr;
+          } else {
+            ctx.fillStyle = 'rgb(' + Math.round(base[0] + (hot[0] - base[0]) * t) + ',' +
+              Math.round(base[1] + (hot[1] - base[1]) * t) + ',' +
+              Math.round(base[2] + (hot[2] - base[2]) * t) + ')';
+          }
+          ctx.beginPath();
+          ctx.arc(d.x + d.dx, d.y + d.dy, (dotSize * (1 + t * 1.6)) / 2, 0, 6.2832);
+          ctx.fill();
+        }
+      }
+
+      function loop(now) {
+        draw(now);
+        if (visible && now - lastAct < 1200) raf = requestAnimationFrame(loop); else raf = 0;
+      }
+      function kick() {
+        lastAct = performance.now();
+        if (!raf && visible && !reduce) raf = requestAnimationFrame(loop);
+      }
+
+      function build() {
+        var r = wrap.current.getBoundingClientRect();
+        W = r.width; H = r.height;
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.max(1, Math.round(W * dpr)); canvas.height = Math.max(1, Math.round(H * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        dots = [];
+        var cols = Math.floor(W / gap) + 1, rows = Math.floor(H / gap) + 1;
+        var ox = (W - (cols - 1) * gap) / 2, oy = (H - (rows - 1) * gap) / 2;
+        for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) dots.push({ x: ox + x * gap, y: oy + y * gap, dx: 0, dy: 0 });
+        colorAt = -1e9;
+        draw(performance.now());
+      }
+
+      function refresh() { colorAt = -1e9; draw(performance.now()); }
+
+      function onMove(e) {
+        var r = canvas.getBoundingClientRect(), y = e.clientY - r.top;
+        if (y < -proximity || y > r.height + proximity) {
+          if (mouse.x > -1e3) { mouse.x = mouse.y = -1e4; kick(); }
+          return;
+        }
+        mouse.x = e.clientX - r.left; mouse.y = y; kick();
+      }
+      function onDown(e) {
+        var r = canvas.getBoundingClientRect(), y = e.clientY - r.top;
+        if (y < 0 || y > r.height) return;
+        waves.push({ x: e.clientX - r.left, y: y, t: performance.now() });
+        kick();
+      }
+
+      build();
+
+      var ro = null;
+      if ('ResizeObserver' in window) { ro = new ResizeObserver(build); ro.observe(wrap.current); }
+      else window.addEventListener('resize', build);
+
+      var io = null;
+      if ('IntersectionObserver' in window) {
+        io = new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) kick(); });
+        io.observe(wrap.current);
+      }
+
+      var mo = new MutationObserver(refresh);
+      mo.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mq.addEventListener) mq.addEventListener('change', refresh);
+
+      if (!reduce) {
+        if (finePointer) window.addEventListener('pointermove', onMove, { passive: true });
+        window.addEventListener('pointerdown', onDown, { passive: true });
+      }
+
+      return function () {
+        if (raf) cancelAnimationFrame(raf);
+        if (ro) ro.disconnect(); else window.removeEventListener('resize', build);
+        if (io) io.disconnect();
+        mo.disconnect();
+        if (mq.removeEventListener) mq.removeEventListener('change', refresh);
+        window.removeEventListener('pointermove', onMove);
+        window.removeEventListener('pointerdown', onDown);
+      };
+    }, []);
+    return h('div', { className: 'dotgrid', ref: wrap, 'aria-hidden': true }, h('canvas', { ref: cv }));
+  }
+
+  /* ---------- Text effects ---------- */
+  function BlurText(props) {
+    var ref = useRef(null), seen = useInView(ref, 0.1);
+    var words = props.text.split(' '), kids = [];
+    words.forEach(function (w, i) {
+      kids.push(h('span', {
+        key: 'w' + i, 'aria-hidden': true,
+        className: 'bt-seg' + (seen ? ' in' : ''),
+        style: { transitionDelay: (reduce ? 0 : i * 70 + (props.delay || 0)) + 'ms' }
+      }, w));
+      if (i < words.length - 1) kids.push(' ');
+    });
+    return h('span', { ref: ref, 'aria-label': props.text }, kids);
+  }
+
+  function Decrypt(props) {
+    var s = useState(props.text), txt = s[0], setTxt = s[1];
+    var ref = useRef(null), seen = useInView(ref, 0.1);
+    useEffect(function () {
+      if (!seen || reduce) return;
+      var chars = '!<>-_/[]{}=+*^?#01', n = 0, src = props.text;
+      var id = setInterval(function () {
+        n++;
+        var reveal = Math.floor(n / 2);
+        if (reveal >= src.length) { clearInterval(id); setTxt(src); return; }
+        setTxt(src.split('').map(function (c, i) {
+          return (c === ' ' || i < reveal) ? c : chars.charAt(Math.floor(Math.random() * chars.length));
+        }).join(''));
+      }, 45);
+      return function () { clearInterval(id); };
+    }, [seen]);
+    return h('span', { className: 'decrypt', ref: ref },
+      h('span', { className: 'decrypt-sizer' }, props.text),
+      h('span', { className: 'decrypt-live', 'aria-hidden': true }, txt));
+  }
+
+  /* ---------- Marquee ---------- */
+  function Marquee(props) {
+    var track = useRef(null);
+    var list = props.items.concat(props.items);
+    function group(hidden, key) {
+      return h('div', { className: 'mq-group', key: key, 'aria-hidden': hidden || undefined },
+        list.map(function (t, i) { return h('span', { className: 'mq-item', key: i }, t); }));
+    }
+    useEffect(function () {
+      if (reduce) return;
+      var el = track.current, x = 0, vel = 0, raf = 0;
+      var last = performance.now(), lastY = window.scrollY;
+      function tick(now) {
+        var dt = Math.min((now - last) / 1000, 0.05); last = now;
+        var y = window.scrollY, sv = dt ? Math.abs(y - lastY) / dt : 0; lastY = y;
+        vel += (Math.min(sv, 2500) / 2500 * 220 - vel) * 0.1;
+        var w = el.firstChild ? el.firstChild.offsetWidth : 0;
+        x -= (45 + vel) * dt;
+        if (w && -x >= w) x += w;
+        el.style.transform = 'translate3d(' + x + 'px,0,0)';
+        raf = requestAnimationFrame(tick);
+      }
+      raf = requestAnimationFrame(tick);
+      return function () { cancelAnimationFrame(raf); };
+    }, []);
+    return h('div', { className: 'marquee' + (reduce ? ' static' : ''), role: 'presentation' },
+      h('div', { className: 'track', ref: track }, reduce ? group(false, 'a') : [group(false, 'a'), group(true, 'b')]));
+  }
+
+  /* ---------- Spotlight / tilt card ---------- */
+  function Spot(props) {
+    var ref = useRef(null);
+    function move(e) {
+      var el = ref.current; if (!el) return;
+      var r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      el.style.setProperty('--mx', x + 'px'); el.style.setProperty('--my', y + 'px');
+      if (props.tilt && finePointer && !reduce) {
+        var px = x / r.width - 0.5, py = y / r.height - 0.5;
+        el.style.transform = 'perspective(800px) rotateX(' + (-py * 6).toFixed(2) + 'deg) rotateY(' + (px * 6).toFixed(2) + 'deg)';
+      }
+    }
+    function leave() { if (ref.current) ref.current.style.transform = ''; }
+    var p = {
+      ref: ref, onMouseMove: move, onMouseLeave: leave,
+      className: 'spot ' + (props.tilt ? 'tilt ' : '') + (props.className || '')
+    };
+    if (props.href) { p.href = props.href; p.target = '_blank'; p.rel = 'noopener noreferrer'; }
+    return h(props.href ? 'a' : 'div', p, props.children);
+  }
+
+  /* ---------- Dock ---------- */
+  function Dock(props) {
+    var panel = useRef(null), items = useRef([]);
+    var size = 44, max = 70, range = 120;
+    function onMove(e) {
+      if (!finePointer || reduce) return;
+      items.current.forEach(function (el) {
+        if (!el) return;
+        var r = el.getBoundingClientRect(), d = Math.abs(e.clientX - (r.left + r.width / 2));
+        var s = size + (max - size) * Math.max(0, 1 - d / range);
+        el.style.width = s + 'px'; el.style.height = s + 'px';
+      });
+    }
+    function onLeave() {
+      items.current.forEach(function (el) { if (el) { el.style.width = ''; el.style.height = ''; } });
+    }
+    return h('nav', { className: 'dock', 'aria-label': 'Quick navigation' },
+      h('div', { className: 'dock-panel', ref: panel, onMouseMove: onMove, onMouseLeave: onLeave },
+        props.items.map(function (it, i) {
+          var common = {
+            key: it.label, className: 'dock-item', 'aria-label': it.label,
+            ref: function (el) { items.current[i] = el; }
+          };
+          var kids = [h(Icon, { key: 'i', d: ICONS[it.icon] }), h('span', { key: 'l', className: 'dock-label' }, it.label)];
+          if (it.onClick) { common.onClick = it.onClick; common.type = 'button'; return h('button', common, kids); }
+          common.href = it.href;
+          if (it.external) { common.target = '_blank'; common.rel = 'noopener noreferrer'; }
+          return h('a', common, kids);
+        })));
+  }
+
+  /* ---------- Content ---------- */
+  var EMAIL = 'mailto:deykaustav357@gmail.com';
+  var GITHUB = 'https://github.com/KaustavDey357';
+  var STACK = ['AWS', 'Terraform', 'Docker', 'GitHub Actions', 'CI/CD', 'EC2', 'Linux', 'Bash'];
+
+  var SERVICES = [
+    { icon: 'cloud', title: 'AWS infrastructure', text: 'EC2, security groups and load balancers defined as Terraform, so every environment is repeatable and version-controlled.' },
+    { icon: 'layers', title: 'Docker packaging', text: 'Your app containerized so it runs the same on your laptop, in CI and in production.' },
+    { icon: 'bolt', title: 'CI/CD pipelines', text: 'GitHub Actions that build, test and deploy on every push, so shipping stops being a manual chore.' }
+  ];
+
+  var PROJECTS = [
+    {
+      title: 'ci-cd-aws-docker',
+      text: 'A Dockerized app provisioned on AWS with Terraform and deployed automatically through GitHub Actions using SCP and SSH.',
+      tags: ['AWS', 'Terraform', 'Docker', 'GitHub Actions'],
+      href: GITHUB + '/ci-cd-aws-docker'
+    },
+    {
+      title: 'This portfolio',
+      text: 'A single-file React site with an interactive dot grid, scroll-driven marquee and light and dark themes, hosted on GitHub Pages.',
+      tags: ['React', 'Canvas', 'GitHub Pages'],
+      href: GITHUB + '/KaustavDey357.github.io'
+    }
+  ];
+
+  var POSTS = [
+    {
+      title: 'How I deployed a Dockerized app to AWS using Terraform and GitHub Actions',
+      src: 'DEV Community',
+      href: 'https://dev.to/kaustav_dey_/how-i-deployed-a-dockerized-app-to-aws-using-terraform-and-github-actions-3nhg'
+    }
+  ];
+
+  /* ---------- Sections ---------- */
+  function Hero() {
+    return h('header', { className: 'hero', id: 'top' },
+      h(DotGrid, null),
+      h('div', { className: 'wrap hero-inner' },
+        h('div', { className: 'topbar' },
+          h('span', { className: 'brand' }, 'Kaustav Dey'),
+          h('span', { className: 'role' }, h(Decrypt, { text: 'DevOps & Cloud Specialist' }))),
+        h('div', { className: 'hero-main' },
+          h('h1', { className: 'hero-title' },
+            h(BlurText, { text: 'Ship your app to AWS with' }), ' ',
+            h('span', { className: 'gradient' }, 'Terraform, Docker and CI/CD')),
+          h('p', { className: 'lead rise' }, 'I help solo developers and early-stage startups get from a working app to a repeatable, automated deployment on AWS.'),
+          h('div', { className: 'cta rise' },
+            h('a', { className: 'btn btn-primary', href: EMAIL }, h(Icon, { d: ICONS.mail }), 'Email me'),
+            h('a', { className: 'btn btn-ghost', href: GITHUB, target: '_blank', rel: 'noopener noreferrer' }, h(Icon, { d: ICONS.git }), 'GitHub')))));
+  }
+
+  function Services() {
+    return h('section', { className: 'block wrap', id: 'services' },
+      h('h2', null, 'What I do'),
+      h('div', { className: 'services' },
+        SERVICES.map(function (s) {
+          return h(Spot, { key: s.title, tilt: true, className: 'service' },
+            h('div', { className: 'ico' }, h(Icon, { d: ICONS[s.icon] })),
+            h('h3', null, s.title),
+            h('p', null, s.text));
+        })));
+  }
+
+  function Featured() {
+    return h('section', { className: 'block lead-block wrap', 'aria-labelledby': 'lx' },
+      h(Spot, { className: 'feature' },
+        h('div', { className: 'feature-main' },
+          h('span', { className: 'badge' }, 'Founder'),
+          h('h2', { className: 'feature-title', id: 'lx' }, h('span', { className: 'shiny' }, 'LeadsExpo')),
+          h('p', { className: 'feature-tagline' }, 'A product I am building and running solo.'),
+          h('p', { className: 'feature-note' }, 'It is where I apply everything I offer clients: infrastructure as code, containers and automated releases.'),
+          h('div', { className: 'tags' }, ['AWS', 'Terraform', 'Docker', 'CI/CD'].map(function (t) { return h('span', { className: 'tag', key: t }, t); }))),
+        h('div', { className: 'feature-points' },
+          [
+            ['Repeatable infrastructure', 'Every resource is described in code, so rebuilding an environment takes minutes.'],
+            ['Automated releases', 'A push to main builds, tests and deploys without manual steps.'],
+            ['Built by one person', 'Simple, low-maintenance choices that a small team can actually run.']
+          ].map(function (p) {
+            return h('div', { className: 'point', key: p[0] }, h('h3', null, p[0]), h('p', null, p[1]));
+          }))));
+  }
+
+  function Work() {
+    return h('section', { className: 'block wrap', id: 'work' },
+      h('h2', null, 'Projects'),
+      h('div', { className: 'projects' },
+        PROJECTS.map(function (p) {
+          return h(Spot, { key: p.title, tilt: true, href: p.href, className: 'project' },
+            h('h3', null, p.title),
+            h('p', null, p.text),
+            h('span', { className: 'repo' }, h(Icon, { d: ICONS.git }), 'View repository'),
+            h('div', { className: 'tags' }, p.tags.map(function (t) { return h('span', { className: 'tag', key: t }, t); })));
+        })));
+  }
+
+  function Writing() {
+    return h('section', { className: 'block wrap', id: 'writing' },
+      h('h2', null, 'Writing'),
+      h('div', { className: 'posts' },
+        POSTS.map(function (p) {
+          return h('a', { className: 'post', key: p.href, href: p.href, target: '_blank', rel: 'noopener noreferrer' },
+            h('span', { className: 'post-title' }, p.title),
+            h('span', { className: 'post-src' }, p.src, h(Icon, { d: ICONS.ext })));
+        })));
+  }
+
+  function Contact() {
+    return h('section', { className: 'block wrap contact', id: 'contact' },
+      h('h2', null, 'Have an app to deploy? Let us talk.'),
+      h('a', { className: 'btn btn-primary btn-lg', href: EMAIL }, h(Icon, { d: ICONS.mail }), 'deykaustav357@gmail.com'),
+      h('div', { className: 'links' },
+        h('a', { href: GITHUB, target: '_blank', rel: 'noopener noreferrer' }, 'GitHub'),
+        h('a', { href: 'https://www.linkedin.com/in/KaustavDey357', target: '_blank', rel: 'noopener noreferrer' }, 'LinkedIn'),
+        h('a', { href: 'https://dev.to/kaustav_dey_', target: '_blank', rel: 'noopener noreferrer' }, 'DEV Community')));
+  }
+
+  function App() {
+    function toggleTheme() {
+      var root = document.documentElement;
+      var cur = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
+    }
+    var dock = [
+      { label: 'Home', icon: 'home', href: '#top' },
+      { label: 'What I do', icon: 'layers', href: '#services' },
+      { label: 'Projects', icon: 'code', href: '#work' },
+      { label: 'Writing', icon: 'doc', href: '#writing' },
+      { label: 'Contact', icon: 'mail', href: '#contact' },
+      { label: 'Toggle theme', icon: 'moon', onClick: toggleTheme }
+    ];
+    return h(React.Fragment, null,
+      h(Hero),
+      h(Marquee, { items: STACK }),
+      h('main', null, h(Featured), h(Services), h(Work), h(Writing), h(Contact)),
+      h('footer', null, h('div', { className: 'wrap' }, h('div', { className: 'divider' }, '© 2026 Kaustav Dey'))),
+      h(Dock, { items: dock }));
+  }
+
+  /* ---------- Error boundary + mount ---------- */
+  function Boundary(props) { React.Component.call(this, props); this.state = { failed: false }; }
+  Boundary.prototype = Object.create(React.Component.prototype);
+  Boundary.prototype.constructor = Boundary;
+  Boundary.getDerivedStateFromError = function () { return { failed: true }; };
+  Boundary.prototype.componentDidCatch = function (err) { console.error('Render error:', err); };
+  Boundary.prototype.render = function () {
+    if (this.state.failed) {
+      return h('div', { className: 'fallback' },
+        h('h1', null, 'Kaustav Dey – DevOps & Cloud Specialist'),
+        h('p', null, 'Something went wrong loading this page. Contact: ',
+          h('a', { href: EMAIL }, 'deykaustav357@gmail.com'), ' · ',
+          h('a', { href: GITHUB }, 'GitHub')));
+    }
+    return this.props.children;
+  };
+
+  try {
+    ReactDOM.createRoot(rootEl).render(h(Boundary, null, h(App)));
+  } catch (err) {
+    console.error(err);
+    rootEl.innerHTML = FALLBACK_HTML;
+  }
+})();
+</script>
+</body>
+</html>
