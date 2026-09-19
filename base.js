@@ -218,5 +218,4 @@
     return h('span', { className: 'decrypt', ref: ref },
       h('span', { className: 'decrypt-sizer' }, props.text),
       h('span', { className: 'decrypt-live', 'aria-hidden': true }, txt));
-  }
-
+                                                           }
