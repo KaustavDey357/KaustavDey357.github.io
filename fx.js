@@ -159,3 +159,64 @@ function Dock(props) {
         return h('a', a, h(Icon, { d: ICONS[it.icon] }), h('span', { className: 'dock-label' }, it.label));
       })));
 }
+
+/* Cursor reveal: a lens follows the pointer (or your finger) and shows the Terraform behind the hero */
+var HCL = [
+  'resource "aws_instance" "app" {',
+  '  ami           = var.ami',
+  '  instance_type = "t3.micro"',
+  '  user_data     = file("deploy.sh")',
+  '}',
+  '',
+  'resource "aws_lb" "web" {',
+  '  load_balancer_type = "application"',
+  '}',
+  '',
+  '$ terraform apply -auto-approve',
+  'Apply complete! Resources: 5 added.',
+  ''
+];
+function Reveal() {
+  var ref = useRef(null);
+  useEffect(function () {
+    if (reduce) return;
+    var hero = ref.current.parentNode;
+    var x = -400, y = -400, r = 0, tx = -400, ty = -400, tr = 0, lastMove = 0, raf = 0, visible = true;
+    function frame(now) {
+      if (!finePointer && now - lastMove > 1400) tr = 0;
+      x += (tx - x) * 0.16; y += (ty - y) * 0.16; r += (tr - r) * 0.14;
+      hero.style.setProperty('--rx', x.toFixed(1) + 'px');
+      hero.style.setProperty('--ry', y.toFixed(1) + 'px');
+      hero.style.setProperty('--rr', Math.max(0, r).toFixed(1) + 'px');
+      raf = visible ? requestAnimationFrame(frame) : 0;
+    }
+    function point(e) {
+      var b = hero.getBoundingClientRect(), px = e.clientX - b.left, py = e.clientY - b.top;
+      if (px < 0 || py < 0 || px > b.width || py > b.height) { if (finePointer) tr = 0; return; }
+      if (r < 5) { x = px; y = py; }
+      tx = px; ty = py; tr = finePointer ? 120 : 90; lastMove = performance.now();
+    }
+    function leave() { tr = 0; }
+    window.addEventListener('pointermove', point, { passive: true });
+    window.addEventListener('pointerdown', point, { passive: true });
+    document.addEventListener('mouseleave', leave);
+    var io = null;
+    if ('IntersectionObserver' in window) {
+      io = new IntersectionObserver(function (en) {
+        visible = en[0].isIntersecting;
+        if (visible && !raf) raf = requestAnimationFrame(frame);
+      });
+      io.observe(hero);
+    }
+    raf = requestAnimationFrame(frame);
+    return function () {
+      cancelAnimationFrame(raf); if (io) io.disconnect();
+      window.removeEventListener('pointermove', point); window.removeEventListener('pointerdown', point);
+      document.removeEventListener('mouseleave', leave);
+    };
+  }, []);
+  var code = HCL.concat(HCL, HCL, HCL).join('\n');
+  return h('div', { className: 'reveal', ref: ref, 'aria-hidden': true },
+    h('div', { className: 'reveal-layer' }, h('pre', { className: 'reveal-code' }, code)),
+    h('div', { className: 'reveal-ring' }));
+}
