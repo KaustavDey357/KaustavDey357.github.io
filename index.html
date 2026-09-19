@@ -255,6 +255,7 @@
     background: var(--surface-2); border: 1px solid var(--line); color: var(--text);
     text-decoration: none; transition: width .12s ease-out, height .12s ease-out, color .2s;
   }
+  button.dock-item { padding: 0; font: inherit; cursor: pointer; }
   .dock-item:hover { color: var(--accent); }
   .dock-item svg { width: 46%; height: 46%; }
   .dock-label {
@@ -266,6 +267,9 @@
     transition: opacity .15s, transform .15s;
   }
   .dock-item:hover .dock-label, .dock-item:focus-visible .dock-label { opacity: 1; transform: translateX(-50%); }
+
+  /* ---------- Fallback ---------- */
+  .fallback { padding: 2rem; max-width: 40rem; margin: 0 auto; }
 
   /* ---------- Motion preferences ---------- */
   @media (prefers-reduced-motion: reduce) {
@@ -289,8 +293,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script>
 (function () {
+  var FALLBACK_HTML =
+    '<div class="fallback"><h1>Kaustav Dey – DevOps &amp; Cloud Specialist</h1>' +
+    '<p>Something went wrong loading this page. Contact: ' +
+    '<a href="mailto:deykaustav357@gmail.com">deykaustav357@gmail.com</a> · ' +
+    '<a href="https://github.com/KaustavDey357">GitHub</a></p></div>';
+  var rootEl = document.getElementById('root');
+
+  if (!window.React || !window.ReactDOM) { rootEl.innerHTML = FALLBACK_HTML; return; }
+
   var h = React.createElement;
-  var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef, useCallback = React.useCallback;
+  var useState = React.useState, useEffect = React.useEffect, useRef = React.useRef;
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -326,14 +339,17 @@
     ext: ['M7 17L17 7', 'M8 7h9v9'],
     git: ['M6 3v12', 'M18 9a3 3 0 100-6 3 3 0 000 6z', 'M6 21a3 3 0 100-6 3 3 0 000 6z', 'M18 9a9 9 0 01-9 9'],
     cloud: ['M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18H7z'],
-    bolt: ['M13 2L4 14h7l-1 8 9-12h-7l1-8z']
+    bolt: ['M13 2L4 14h7l-1 8 9-12h-7l1-8z'],
+    moon: ['M20 14.5A8 8 0 019.5 4 8 8 0 1020 14.5z']
   };
 
-  /* ---------- DotGrid (React Bits: Backgrounds) ---------- */
-  function hexRgb(hex) {
-    hex = hex.replace('#', '').trim();
+  /* ---------- DotGrid ---------- */
+  function hexRgb(hex, fallback) {
+    hex = String(hex || '').replace('#', '').trim();
+    if (!hex) return fallback;
     if (hex.length === 3) hex = hex.split('').map(function (c) { return c + c; }).join('');
     var n = parseInt(hex, 16);
+    if (isNaN(n)) return fallback;
     return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
   }
 
@@ -343,13 +359,13 @@
     useEffect(function () {
       var canvas = cv.current, ctx = canvas.getContext('2d'), root = document.documentElement;
       var W = 0, H = 0, dots = [], raf = 0, visible = true, lastAct = 0, colorAt = -1e9;
-      var base = [0, 0, 0], hot = [0, 0, 0], baseStr = '#000';
+      var base = [188, 217, 198], hot = [21, 128, 61], baseStr = 'rgb(188,217,198)';
       var mouse = { x: -1e4, y: -1e4 }, waves = [];
 
       function readColors() {
         var cs = getComputedStyle(root);
-        base = hexRgb(cs.getPropertyValue('--dot'));
-        hot = hexRgb(cs.getPropertyValue('--dot-hot'));
+        base = hexRgb(cs.getPropertyValue('--dot'), base);
+        hot = hexRgb(cs.getPropertyValue('--dot-hot'), hot);
         baseStr = 'rgb(' + base[0] + ',' + base[1] + ',' + base[2] + ')';
       }
 
@@ -399,25 +415,7 @@
         var r = wrap.current.getBoundingClientRect();
         W = r.width; H = r.height;
         var dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+        canvas.width = Math.max(1, Math.round(W * dpr)); canvas.height = Math.max(1, Math.round(H * dpr));
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         dots = [];
-        var cols = Math.floor(W / gap) + 1, rows = Math.floor(H / gap) + 1;
-        var ox = (W - (cols - 1) * gap) / 2, oy = (H - (rows - 1) * gap) / 2;
-        for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) dots.push({ x: ox + x * gap, y: oy + y * gap, dx: 0, dy: 0 });
-        colorAt = -1e9;
-        draw(performance.now());
-      }
-
-      function refresh() { colorAt = -1e9; draw(performance.now()); }
-
-      function onMove(e) {
-        var r = canvas.getBoundingClientRect(), y = e.clientY - r.top;
-        if (y < -proximity || y > r.height + proximity) {
-          if (mouse.x > -1e3) { mouse.x = mouse.y = -1e4; kick(); }
-          return;
-        }
-        mouse.x = e.clientX - r.left; mouse.y = y; kick();
-      }
-      function onDown(e) {
-        var r = canvas.getBoundingClient
+        var cols = Math.floor(W / gap) 
