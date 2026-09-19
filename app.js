@@ -21,10 +21,12 @@ var PROJECTS = [
 ];
 
 var POSTS = [
-  { title: 'How I deployed a Dockerized app to AWS using Terraform and GitHub Actions', src: 'DEV Community', href: 'https://dev.to/kaustav_dey_/how-i-deployed-a-dockerized-app-to-aws-using-terraform-and-github-actions-3nhg' },
-  { title: 'How I provisioned scalable AWS infrastructure with Terraform and a load balancer', src: 'DEV Community', href: 'https://dev.to/kaustav_dey_/how-i-provisioned-scalable-aws-infrastructure-with-terraform-and-load-balancer-4n5g' }
+  { title: 'How I deployed a Dockerized app to AWS using Terraform and GitHub Actions', src: 'DEV Community', date: '2025-05-15', href: 'https://dev.to/kaustav_dey_/how-i-deployed-a-dockerized-app-to-aws-using-terraform-and-github-actions-3nhg' },
+  { title: 'How I provisioned scalable AWS infrastructure with Terraform and a load balancer', src: 'DEV Community', date: '2025-05-15', href: 'https://dev.to/kaustav_dey_/how-i-provisioned-scalable-aws-infrastructure-with-terraform-and-load-balancer-4n5g' }
 ];
-if (MEDIUM_URL) POSTS.push({ title: MEDIUM_TITLE, src: 'Medium', href: MEDIUM_URL });
+MEDIUM_POSTS.forEach(function (m) { POSTS.push({ title: m.title, src: 'Medium', date: m.date, href: m.href }); });
+POSTS.sort(function (x, y) { return x.date < y.date ? 1 : x.date > y.date ? -1 : 0; });
+function fmtDate(d) { try { return new Date(d + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' }); } catch (e) { return ''; } }
 
 function Tags(props) { return h('div', { className: 'tags' }, props.list.map(function (t) { return h('span', { className: 'tag', key: t }, t); })); }
 
@@ -41,7 +43,8 @@ function Hero() {
         h('div', { className: 'cta rise' },
           h('a', { className: 'btn btn-primary', href: EMAIL }, h(Icon, { d: ICONS.mail }), 'Email me'),
           h('a', { className: 'btn btn-ghost', href: GITHUB, target: '_blank', rel: 'noopener noreferrer' }, h(Icon, { d: ICONS.git }), 'GitHub')),
-        h(Pipeline))));
+        h(Pipeline))),
+    h(Reveal));
 }
 
 function Featured() {
@@ -87,14 +90,18 @@ function Work() {
 }
 
 function Writing() {
+  var s = useState(false), all = s[0], setAll = s[1];
+  var shown = all ? POSTS : POSTS.slice(0, 6);
   return h('section', { className: 'block wrap', id: 'writing' },
     h('h2', null, 'Writing'),
     h('div', { className: 'posts' },
-      POSTS.map(function (p) {
+      shown.map(function (p) {
         return h('a', { className: 'post', key: p.href, href: p.href, target: '_blank', rel: 'noopener noreferrer' },
           h('span', { className: 'post-title' }, p.title),
-          h('span', { className: 'post-src' }, p.src, h(Icon, { d: ICONS.ext })));
-      })));
+          h('span', { className: 'post-src' }, p.src + (p.date ? ' \u00b7 ' + fmtDate(p.date) : ''), h(Icon, { d: ICONS.ext })));
+      })),
+    POSTS.length > 6 ? h('button', { type: 'button', className: 'btn btn-ghost more', onClick: function () { setAll(!all); }, 'aria-expanded': all },
+      all ? 'Show fewer posts' : 'Show all ' + POSTS.length + ' posts') : null);
 }
 
 function Contact() {
@@ -146,4 +153,4 @@ try {
 } catch (err) {
   console.error(err);
   rootEl.innerHTML = FALLBACK_HTML;
-                       }
+           }
