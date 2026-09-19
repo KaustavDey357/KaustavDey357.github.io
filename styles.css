@@ -306,5 +306,27 @@
   .glitch::before, .glitch::after { animation: none; opacity: 0; }
   .hook-old, .pipe-step { transition: none; }
   .pt { display: none; }
-           }
-                                                                      
+}
+
+/* ---------- Cursor reveal ---------- */
+.reveal { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.reveal-layer {
+  position: absolute; inset: 0; background: var(--accent);
+  -webkit-mask-image: radial-gradient(circle var(--rr, 0px) at var(--rx, -400px) var(--ry, -400px), #000 97%, transparent 100%);
+          mask-image: radial-gradient(circle var(--rr, 0px) at var(--rx, -400px) var(--ry, -400px), #000 97%, transparent 100%);
+}
+.reveal-code {
+  margin: 0; padding: 2rem clamp(1.25rem, 4vw, 2.5rem); color: var(--on-accent);
+  font: 600 clamp(.85rem, 1.7vw, 1.1rem)/1.7 ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  white-space: pre; overflow: hidden; height: 100%;
+}
+.reveal-ring {
+  position: absolute; border-radius: 50%; border: 2px solid var(--accent-2);
+  left: calc(var(--rx, -400px) - var(--rr, 0px)); top: calc(var(--ry, -400px) - var(--rr, 0px));
+  width: calc(var(--rr, 0px) * 2); height: calc(var(--rr, 0px) * 2);
+  opacity: calc(var(--rr, 0px) / 120px);
+}
+@media (prefers-reduced-motion: reduce) { .reveal { display: none; } }
+
+.more { margin-top: 1.5rem; font-family: inherit; cursor: pointer; }
+    
