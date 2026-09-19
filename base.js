@@ -191,7 +191,7 @@
     words.forEach(function (w, i) {
       kids.push(h('span', {
         key: 'w' + i, 'aria-hidden': true,
-        className: 'bt-seg' + (seen ? ' in' : ''),
+        className: 'bt-seg' + (props.segClass ? ' ' + props.segClass : '') + ((props.active !== undefined ? props.active : seen) ? ' in' : ''),
         style: { transitionDelay: (reduce ? 0 : i * 70 + (props.delay || 0)) + 'ms' }
       }, w));
       if (i < words.length - 1) kids.push(' ');
@@ -219,3 +219,4 @@
       h('span', { className: 'decrypt-sizer' }, props.text),
       h('span', { className: 'decrypt-live', 'aria-hidden': true }, txt));
   }
+
